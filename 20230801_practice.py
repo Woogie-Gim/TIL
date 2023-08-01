@@ -259,3 +259,4 @@ for i in range(2):
 
         cnt=isCnt(target[i][j])
         print(f'{target[i][j]}:{cnt}')
+ 
