@@ -171,3 +171,94 @@ cnt += ls.count(n)
 
 # 8320 직사각형을 만드는 방법
 # 1) 가능한 세로, 가로 체크
+"""
+for i (1, N + 1): # 세로
+    for j (i, N + 1): # 가로
+        if i * j <= N:
+            ans += 1
+"""
+# N = int(input())
+#
+# ans = 0
+# for i in range(1, N + 1):
+#     for j in range(i, N + 1):
+#         if i * j <= N:
+#             ans += 1
+#
+# print(ans)
+
+# 2) 그리디 / 규칙성
+# N // i 개수 2 -> 1 개 빼고 3 -> 2개 빼고
+
+# [2] 몫 연산을 통해서 처리
+# N = int(input())
+# ans = N
+#
+# for i in range(2, N):
+#     n = N // i - (i - 1)
+#     if n < 1:
+#         break
+#     ans += n
+# print(ans)
+
+# swea 4613 러시아 국기 같은 깃발
+# IM 무조건 전체를 순회 혹은 반복(완전 탐색) backtracking도 아니고 loop -> 가능한 모든 처리
+# N 개에서 2개를 뽑아서 (변형)범위를 3개로
+# 흰색은 (0, i + 1) 파란색은 (i + 1, j + 1) 빨간색은 (j + 1, N)
+"""
+for i (0, N - 2)
+for j (i + 1, N - 1) # 가능한 모든 i, j 기준선
+for s (i + 1) : W 색을 누적
+cnt += arr[s].count('W')
+for s (i + 1, j + 1):
+cnt += arr[s].count('B')
+
+mx = max(mx, count)
+"""
+
+# T = int(input())
+# for tc in range(1, T + 1):
+#     N, M = map(int, input().split())
+#     arr = [input() for _ in range(N)]
+#
+#     mx = 0
+#     for i in range(N - 2):
+#         for j in range(i + 1, N - 1):
+#             cnt = 0
+#             for s in range(i + 1):
+#                 cnt += arr[s].count('W')
+#             for s in range(i + 1, j + 1):
+#                 cnt += arr[s].count('B')
+#             for s in range(j + 1, N):
+#                 cnt += arr[s].count('R')
+#             mx = max(mx, cnt)
+#
+#     print(f'#{tc} {N * M - mx}')
+
+# 2628 종이 자르기
+# 익숙한 arr 에 0, 1 저장 -> 불편
+# => column list / row_list => 오름차순으로 sort()
+# C, R = map(int, input().split())
+# r_lst = [0, R]
+# c_lst = [0, C]
+# N = int(input())
+# for _ in range(N):
+#     t, n = map(int, input().split())
+#     if t == 0:
+#         r_lst.append(n)
+#     else:
+#         c_lst.append(n)
+#
+# r_lst.sort()
+# c_lst.sort()
+#
+# # [2] 가장 긴 길이 찾기
+# r_mx = 0
+# for i in range(1, len(r_lst)):
+#     r_mx = max(r_mx, r_lst[i] - r_lst[i - 1])
+#
+# c_mx = 0
+# for i in range(1, len(r_lst)):
+#     c_mx = max(c_mx, c_lst[i] - c_lst[i - 1])
+#
+# print(r_mx * c_mx)
