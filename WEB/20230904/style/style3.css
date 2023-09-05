@@ -1,0 +1,16 @@
+p {
+  color: violet;
+  font-style: italic;
+  font-size: 20px;
+  text-align: center;
+  border: 5px solid blue;
+  width: 400px;
+  height: 50px;
+  padding: 20px;
+}
+
+span {
+  border: 10px dashed red;
+  padding: 10px;
+  font-size: 2em;
+}

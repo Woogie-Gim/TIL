@@ -1,0 +1,292 @@
+<!-- 인터넷 => 유무선 네트워크 통신이 가능하다
+공간 : 웹
+서비
+웹페이지
+html css js
+
+집을 짓는다
+HTML : 집의 뼈대 구조
+CSS : 가구, 벽지, 꾸미기
+JS : 동적인 요소 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+<!-- head : 사진으로 예를 들면 사진에 관한 정보를 담을 수 있는 정보 공간 (사진 일 시 시간)
+body : 사진 내용
+
+head : 웹 문서의 기본적인 중요 정보
+
+인코딩 방식
+미국 : 아스키코드
+각 세계 언어 : 유니코드
+유니코드를 표기할 때 8bit - 1byte / 16bit - 2byte 로 표기할 것 인가
+ex) A  8비트 저장 (01000001 (2))
+인코딩 하는 방식 중 가장 깨지지 않는 방식 중 하나 UTF-8
+viewport : 각 디바이스 환경마다(웹이나 모바일) 사용할 때 맞춤형으로 화면을 조정해주는
+title : 웹 문서의 제목 (ex : Naver)
+
+body : 브라우저에 실제 렌더링 되는 부분은 body에 표기를 한다 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>
+    p 태그는 단락을 만들 때 사용한다.
+  </p>
+  <!-- p태그는 블록속성 -->
+  <p>
+    단락이 바뀌면 한줄 띄어진다.<br> <!-- 띄어쓰기 태그 -->
+    단락 안에서 한줄 띄우고 싶다면...
+  </p>
+  그냥 글씨를 적어보자. <!-- 공백 인식 안됨 -->
+  <pre>그냥 글씨를          적어보자.</pre>
+
+  <blockquote>
+    인용문을 사용할 때 쓰는 태그 입니다.
+  </blockquote>
+  <q>
+    인용 내용을 적을 때 사용하는 태그
+  </q>
+  <strong>굵은 글씨 </strong>
+  <em>이탤릭</em>
+  <mark>형광펜</mark>
+
+  <!-- 리스트 태그를 보자
+  리스트 태그에는 ol ul 등이 있다. -->
+  
+  <ul>
+    <li>파이썬</li>
+    <li>자바</li>
+    <li>C++</li>
+  </ul>
+  <!-- unordered list -->
+  <!-- 반드시 li 태그를 가지고 있어야 한다 -->
+
+  <ol start="3", type="i"> <!-- 요소 안에 속성을 넣을 수 있다-->
+    <li>파이썬</li>
+    <li>자바</li>
+    <li>C++</li>
+  </ol>
+  <!-- ordered list -->
+  <!-- 반드시 li 태그를 가지고 있어야 한다 -->
+  <a href="https://www.naver.com">
+    <img src="./naverlogo.jpg" widrth="200" height="200">
+    </a> <br>
+  <a href="#">구글</a>
+  <!-- 앵커 태그 -->
+  <!-- # 일 경우 관례상 아직 url을 넣지 않았다 -->
+  <hr>
+  <!-- 구분선 태그 / 여는 태그만 존재 -->
+  <form action="">
+  <p>아이디 : <input type="text" autofocus></p>
+  <p>비밀번호 : <input type="password"> </p>
+  </form>
+
+  <form action="##">
+    <p>email을 적어주세요</p>
+    <input type="email">
+    <br>
+    <input type="submit">
+    <input type="number">
+    <input type="checkbox">
+    <input type="radio">
+    <input type="file">
+    <input type="date">
+  </form>
+  <!-- input tag mdn 으로 검색 -->
+  <label for="asdf">여기요</label>
+  <input id="asdf" type="checkbox"> 클릭
+
+  <select>
+    <option value="python">파이썬</option>
+    <option value="java">자바</option>
+    <option value="C++">C++</option>
+  </select>
+  <!-- 실제 서버에 들어가는 값은 value -->
+</body>
+
+</html>
+
+<!-- 블록 속성 : 한 단락을 전체 사용하는
+인라인 : 단락이 아닌 컨텐츠의 크기만큼만 작성되는 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h3>먹고 싶은 것을 선택하시오(중복체크 가능)</h3>
+  <p>
+    치킨<input type="checkbox">
+    피자<input type="checkbox">
+    떡갈비<input type="checkbox">
+    오리탕<input type="checkbox">
+    김떡순<input type="checkbox">
+  </p>
+  <hr>
+  <h3>해당되는 트랙을 체크하시오</h3>
+  <p>
+    파이썬<input type="radio" name="반">
+    자바<input type="radio" name="반">
+    임베디드<input type="radio" name="반">
+    <!-- name에 같은 속성값을 넣어서 중복체크 방지 -->
+  </p>
+  <p>
+    해당반을 선택하세요.
+    <select>
+      <option value="1">광주1반</option>
+      <option value="2">광주2반</option>
+      <option value="3">광주3반</option>
+    </select>
+  </p>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div></div>
+  <div></div>
+  <!-- division 태그는 아무 뜻이나 기능이 없음 뼈대 세울 때 사용하는 태그 -->
+  <!-- semantic 태그 특별한 기능은 없지만 구분을 위해 사용하는 태그 -->
+  <span></span>
+
+  <!-- html5 부터 -->
+  <header>
+    <nav></nav>
+  </header>
+
+  <section>
+    <article></article>
+  </section>
+
+  <footer>
+    <article></article>
+  </footer>
+
+  <!-- non-semantic 태그를 통해 작성 권장 -->
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+  <h1 class="green">SSAFY</h1>
+  <h2>선택자 연습</h2>
+  <div class="green box">
+    box contents
+    <div>
+      <p class="green">지역목록</p>
+      <ul>
+        <li>서울</li>
+        <li id="purple">대전</li>
+        <li>구미</li>
+        <li>광주</li>
+      </ul>
+    </div>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, cum
+      quam est recusandae sequi animi? Quod iure nam eaque dolorum, possimus
+      officia alias! Corrupti, velit dolorum. Corporis error aperiam eveniet!
+    </p>
+    <h3>hello</h3>
+    <h4>css</h4>
+  </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="style/style2.css">
+</head>
+<body>
+  <p>1</p>
+  <p class="orange">2</p>
+  <p class="green orange">3</p>
+  <p class="orange green">4</p>
+  <p id="red" class="orange">5</p>
+  <h2 id="red" class="orange">6</h2>
+  <p id="red" class="orange" style="color: brown;">7</p>
+  <h2 id="red" class="orange" style="color: brown;">8</h2>
+</body>
+</html>
+
+<!-- 우선순위 연습 -->
+<!-- 7번의 경우 인라인이 우선순위가 높기 때문에 brown -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style/style3.css">
+</head>
+<body>
+  <p>
+    안녕하세요
+    <span>김선욱</span>
+    반갑습니다
+  </p>
+</body>
+</html>
+
+<!-- 외곽선 border / 안에 내용 contents / contents와 border 사이의 공간 padding
+/ 다른 태그와의 공간 : margin 
+p 태그 안에 css를 먹였지만 span 태그도 css 적용
+부모에 css를 먹이면 자식까지 css가 적용되는 것
+: 상속 (글자 관련만 상속이 되고 박스 관련은 상속이 되지 않는다)-->
+<!-- em : 부모 요소 대비 텍스트 크기 * 배 -->
+<!-- rem (최상단 루트 크기 아무것도 없으면 16px 기본) 
+2rem : 32px -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style/style4.css">
+</head>
+<body>
+  <h1 class="px">px사용</h1>
+  <h1 class="vw">vw사용</h1>
+</body>
+</html>
+
+<!-- #ff0000 16진수, rgb(255, 0, 0) 삼원색, hsl(0, 100%, 50) 색조 채도 밝기 -->
