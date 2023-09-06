@@ -1,0 +1,92 @@
+/* 
+  초기화
+*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#header {
+  border-bottom: 1px solid #ebebeb;
+}
+
+.wrapper {
+  max-width: 1440px;
+  height: 80px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.logo {
+  float: left;
+  /* height: 100%; */
+  line-height: 80px;
+  margin-right: 2vw;
+}
+
+.gnb-left {
+  float: left;
+  /* height: 100%; */
+}
+
+.gnb-right {
+  float: right;
+  /* height: 100%; */
+}
+
+.gnb-left > ul > li {
+  float: left;
+  /* height: 100%; */
+  line-height: 80px;
+}
+
+.gnb-left > ul > li > a {
+  padding: 6px 12px;
+}
+
+.gnb-right ul > li {
+  float: left;
+  line-height: 80px;
+}
+
+.gnb-right > ul > li > a {
+  padding: 6px 12px;
+}
+
+.gnb-left > ul > li > a:hover {
+  color: white;
+  background: black;
+  border-radius: 20px;
+}
+
+.gnb-left > ul > li > a:focus {
+  border-radius: 20px;
+  outline: 2px dotted skyblue;
+}
+
+/* 
+  (optional) 유저 인터랙션
+*/
+.gnb-left > ul > li > a:hover {
+  color: white;
+  background: black;
+  border-radius: 20px;
+}
+
+.gnb-left > ul > li > a:focus {
+  border-radius: 20px;
+  outline: 2px dotted skyblue;
+}
+

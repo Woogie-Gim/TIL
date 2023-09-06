@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .box{
+    display: inline-block;
+    float: left;
+  }
+  .a {
+    background-color: yellow;
+    width: 30%;
+  }
+  .b {
+    background-color: yellowgreen;
+    width: 50%;
+  }
+  .box{
+    display: inline-block;  
+  }
+  /* footer{
+    clear: both;
+  } */
+  .container {
+    background-color: aqua;
+  }
+  /* 부모 요소의 공간을 무시당함 */
+</style>
+<body>
+  <div class="container">
+    <section class="box a">
+    <h1>section 1</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut officiis inventore sunt eligendi dolore
+    veniam expedita tenetur? Dolores reprehenderit molestiae, totam labore, id vitae quo suscipit ullam
+    delectus neque corporis.</p>
+    </section>
+    <section class="box b">
+    <h1>section 2</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut officiis inventore sunt eligendi dolore
+    veniam expedita tenetur? Dolores reprehenderit molestiae, totam labore, id vitae quo suscipit ullam
+    delectus neque corporis.</p>
+    </section>
+    <div style="clear:both"></div>
+  </div>
+  <footer>풋터</footer>
+</body>
+</html>

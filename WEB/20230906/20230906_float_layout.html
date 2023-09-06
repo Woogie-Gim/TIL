@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    font-family: Arial;
+    width: 800px;
+  }
+
+  section {
+    float: left;
+    margin-left: 4px;
+    width: 490px;
+    height: 300px;
+  }
+
+  aside {
+    float: right;
+    margin-right: 4px;
+    width: 280px;
+    height: 300px;
+  }
+
+  /* 6. 모든 semantic 태그의 border 두께를 1px, 실선, 검은색으로 설정합니다. */
+  /* 7. 모든 semantic 태그의 border 모서리 반경을 4px로 설정합니다. */
+  header,
+  nav,
+  section,
+  article,
+  aside,
+  footer {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 4px;
+    padding: 4px;
+  }
+
+  header,
+  nav,
+  footer,
+  article {
+    margin: 4px;
+  }
+
+  /* 4. h1 태그를 수평 중앙에 정렬합니다. */
+  h1 {
+    text-align: center;
+  }
+
+  /* 1. article 태그는 white로 나머지 시멘틱 태그는 lightgrey로 배경색을 설정합니다. */
+  header,
+  nav,
+  section,
+  article,
+  aside,
+  footer {
+    /* border-width: 1px;
+border-style: solid;
+border-color: black;
+border-radius: 4px; */
+    background-color: lightgray;
+  }
+
+  article {
+    background-color: white;
+  }
+</style>
+
+<body>
+  <header>
+    <h1>header</h1>
+  </header>
+
+  <nav>
+    <h2>nav</h2>
+  </nav>
+
+  <div class="clearfix">
+    <section>
+      <h2>section</h2>
+      <article>
+        <h3>article1</h3>
+      </article>
+      <article>
+        <h3>article2</h3>
+      </article>
+    </section>
+    <aside>
+      <h2>aside</h2>
+    </aside>
+    <div style="clear: both;"></div>
+  </div>
+
+  <footer>
+    <h2 h2>footer</h2>
+  </footer>
+
+</body>
+
+</html>
