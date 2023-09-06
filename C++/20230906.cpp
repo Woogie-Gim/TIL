@@ -89,3 +89,6 @@ int main(void)
 	cout << "제일 좋아하는 언어는 " << lang << "입니다." << endl;
 	return 0;
 }
+
+
+// 주의사항 한 프로젝트 안에 main 함수는 한개만 선언할 수 있다!
