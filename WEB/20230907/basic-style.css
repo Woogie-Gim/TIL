@@ -1,0 +1,36 @@
+* {
+  /* 태두리를 기준으로 박스 사이즈를 하고 */
+  box-sizing: border-box;
+  }
+  body {
+  /* 실행중인 스크린 크기에 맞춰 전체화면을 body로 잡았다
+  그리고 마진 0을 넣어서 html문서와 body사이의 간격을 없앳다 */
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  }
+  .item {
+  /* 컨테이너 안에 items 들의 style을 부여하고 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #181818;
+  font-size: 1.2rem;
+  font-weight: bold;
+  }
+/* 각각의 박스에 색을 달리 적용했다 */
+.color1 {
+  background-color: #d7bee2;
+  }
+  .color2 {
+  background-color: #a9c7d8;
+  }
+  .color3 {
+  background-color: #c0df9f;
+  }
+  .color4 {
+  background-color: #f2e5a6;
+  }
+  .color5 {
+  background-color: #e89d9d;
+  }

@@ -1,0 +1,12 @@
+.container {
+  display: grid;
+  /* row 를 통해서 각각 3개의 컬럼을 만들것인데 각 100px씩 주겠다. */
+  grid-template-columns: 100px 100px 100px;
+  }
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: 100px 200px repeat(2,100px);
+  }
+  
