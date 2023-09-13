@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>하이 {{info.name}}<h1>
+    <h1>나이는: {{info.age|add:2}}</h1>
+    {% if info.age == 21 %}
+        <p>하나도 부럽지가 않아.</p>
+    {% endif %}
+
+    {% for color in info.color %}
+        <li>{{color}}</li>
+    {% endfor %}
+
+    <p>내가 좋아하는 컬러는 {{info.color.0}} 입니다.</p>
+
+{% endblock content %}
