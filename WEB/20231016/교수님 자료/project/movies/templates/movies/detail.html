@@ -1,0 +1,58 @@
+# movies/detail.html
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>DETAIL</h1>
+  <hr />
+  <div>
+    <h5>{{ movie.title }}</h5>
+    <p>{{ movie.description }}</p>
+
+    <span>좋아요: {{ movie.like_users.count }}</span>
+    <form action="{% url "movies:likes" movie.pk %}" method="POST">
+      {% csrf_token %}
+      {% if request.user in movie.like_users.all %}
+        <input type="submit" value="좋아요 취소">
+      {% else %}
+        <input type="submit" value="좋아요">
+      {% endif %}
+    </form>
+    
+    {% if user == movie.user %}
+      {% comment %} 게시글 update {% endcomment %}
+      <a href="{% url 'movies:update' movie.pk %}">UPDATE</a>
+      {% comment %} 게시글 delete {% endcomment %}
+      <form action="{% url 'movies:delete' movie.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">DELETE</button>
+      </form>
+    {% endif %}
+  </div>
+  <a href="{% url 'movies:index' %}">BACK</a>
+  <hr />
+
+  {% comment %} 해당 게시글의 댓글 파트 구현 {% endcomment %}
+  <h4>댓글 목록</h4>
+  <ul>
+    {% for comment in comments %}
+      <li>
+        {{ comment.content }}
+        {% comment %} 댓글 지우기 {% endcomment %}
+        {% if user == comment.user %}
+          <form action="{% url 'movies:comments_delete' movie.pk comment.pk %}" method="POST" style="display: inline;">
+            {% csrf_token %}
+            <input type="submit" value="DELETE" />
+          </form>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  <hr />
+  {% comment %} 댓글 작성하기 {% endcomment %}
+  <form action="{% url 'movies:comments_create' movie.pk %}" method="POST">
+    {% csrf_token %}
+    {{ comment_form }}
+    <input type="submit" />
+  </form>
+{% endblock %}
