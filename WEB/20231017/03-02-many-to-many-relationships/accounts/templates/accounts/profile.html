@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>{{ person.username }}님의 프로필</h1>
+  <hr>
+
+  <div>
+    <div>
+      팔로잉 : {{ person.followings.all|length }} / 팔로워 : {{ perosn.followers.all|length }}
+    </div>
+      {% comment %} person.pk = 상대방 검색에서 사용 {% endcomment %}
+    {% if request.user != person %}
+    <div>
+      <form action="{% url "accounts:follow" person.pk %}" method="POST">
+        {% csrf_token %}
+        {% if request.user in person.followers.all %}
+          <input type="submit" value="Unfollow">
+        {% else %}
+          <input type="submit" value="Follow">
+        {% endif %}
+      </form>
+    </div>
+    {% endif %}
+  </div>
+
+  <h2>작성한 게시글</h2>
+  {% comment %} 1명의 user가 N개의 작성한 게시글을 조회 (역참조) {% endcomment %}
+  {% for article in person.article_set.all %}
+    <p>{{ article.title }}</p>
+  {% endfor %}
+  <hr>
+
+  <h2>작성한 댓글</h2>
+  {% comment %} 1명의 user가 N개의 작성한 댓글을 조회 (역참조) {% endcomment %}
+  {% for comment in person.comment_set.all %}
+    <p>{{ comment.content }}</p>
+  {% endfor %}
+  <hr>
+
+  <h2>좋아요를 누른 게시글</h2>
+  {% comment %} 다대다 관계 동등한 관계 
+  user 중심으로 조회를 하기 때문에 역참조를 해야 한다.
+  역참조 manager 이름을 like_articles로 따로 설정했음
+  {% endcomment %}
+  {% for article in person.like_articles.all %}
+    <p>{{ article.title }}</p>
+  {% endfor %}
+  <hr>
+
+</body>
+</html>
