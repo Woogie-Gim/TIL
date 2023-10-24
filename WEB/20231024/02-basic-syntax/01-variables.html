@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // let
+    let number = 10 // 1. 선언 및 초기값 할당
+    number = 20 // 2. 재할당
+    console.log(number)
+
+    // let number = 20 // 재선언 불가능
+
+    // const
+    // const number // 선언 시 반드시 초기 값 필요
+    // // Uncaught SyntaxError: Missing initializer in const declaration
+
+    // const number = 10 // 1. 선언 및 초기값 할당
+    // number = 20 // 2. 재할당 불가능
+    // console.log(number) // Uncaught TypeError: Assignment to constant variable 
+  
+    
+    // 블록 스코프
+    let x = 1
+    if (x === 1)
+    {
+      let x = 1
+      console.log(x) // 2
+    }
+    console.log(x) // 1
+
+
+    // 템플릿 리터럴
+    const age = 100
+    const message = `홍길동은 ${age}세 입니다`
+    console.log(message)
+
+
+  </script>
+</body>
+
+</html>
