@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- todoList 내용을
+  리스트화 시켜서 (ul 태그 사용해서)
+  화면에 출력해 보기
+  
+  라이브 서버 켜서 무엇을 위한 코드인지 먼저 확인하라 
+  -->
+
+  <script>
+    const todoList = ['양치하기', '공부하기', '휴식하기']
+    const body = document.querySelector('body')
+
+    const title = document.createElement('h1')
+    title.innerText = '오늘의 Todo'
+
+    const ul = document.createElement('ul')
+    body.append(title, ul)
+    
+    for (let i=0; i<3; i++) {
+      const li = document.createElement('li')
+      li.innerText = todoList[i]
+      ul.appendChild(li)
+    }
+
+  
+  </script>
+</body>
+</html>

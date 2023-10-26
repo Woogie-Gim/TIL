@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- 이번에 하려는 것은 아이디랑 비번을 넣는 박스를 만든후
+  클릭시 css focus를 적용시키는 것을 연습 해 볼 것이다.
+
+  라이브 서버 켜서 무엇을 위한 코드인지 먼저 확인하라 -->
+
+  <style>
+    section {
+      /* 전체 높이를 50% 정도 위치에 중앙에 오도록 한다. */
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .myInputs {
+      /* display block 을 해야 세로로 세워 진다. */
+      display: block;
+      outline: none;
+      /* 너비는 200 , 마진으로 서로를 띄워 준다. */
+      width: 200px;
+      margin: 15px;
+      /* 패딩으로 공간을 준 후, 안에 글귀가 중앙에 오도록 한다. */
+      padding: 15px 10px;
+      text-align: center;
+      /* 모서리를 살짝 각지게 깎는다. */
+      border: 2px solid #55b2cf;
+      border-radius: 5px;
+    }
+ 
+    .myInputs:focus {
+      /* focus 발생시 바뀔 속성 */
+      border-color: #cf5555;
+    }
+
+    .myButton{
+      /* 위와 동일, 기본 버튼의 background, outline 제거 */
+      display: block;
+      background: none;
+      outline: none;
+      margin: 15px auto;
+      padding: 15px 10px;
+      text-align: center;
+      border: 2px solid #55b2cf;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+  </style>
+</head>
+<body>
+  <section>
+    <form>
+      <input type="text" placeholder="Username">
+      <input type="password" placeholder="Password">
+      <button></button>
+    </form>
+  </section>
+
+  <script>
+    // input 태그 전부를 선택 후
+    const myInputs = document.querySelectorAll('input')
+
+    // 모든 input 태그에 myInput클래스를 추가
+    myInputs.forEach(function(eachInput) {
+      eachInput.setAttribute('class', 'myInputs')
+    })
+
+    // 마이버튼 추가
+    const btn = document.querySelector('button')
+    btn.setAttribute('class', 'myButton')
+    // [참고] input 태그와 다르게 button은 value 를 값으로 추가 할 수 없다. 주의하라.
+    btn.innerText = 'Log In'
+
+ </script>
+</body>
+</html>

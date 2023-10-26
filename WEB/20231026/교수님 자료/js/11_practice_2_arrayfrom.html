@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- ul>li*10 -->
+  <ul>
+    <li>가</li>
+    <li>나</li>
+    <li>다</li>
+    <li>라</li>
+    <li>마</li>
+    <li>바</li>
+    <li>사</li>
+    <li>아</li>
+    <li>자</li>
+    <li>카</li>
+  </ul>
+  <script>
+    const lists = document.querySelectorAll("ul>li");
+    console.log(lists);
+
+    // for(let i=0; i<lists.length; i++){
+    //   console.log(lists[i]);
+    //   lists[i].innerText = lists[i].innerText + "기";
+    // }
+
+    // querySelectorAll 은 완벽한 배열 X (유사배열 객체라고 함!!) 따라서
+    // lists.map(li => console.log(li)); // 안되는 코드
+
+    // querySelectorAll 사용시
+    // Array.from 으로 감싸고 배열 메서드 사용 해서 출력 가능
+    // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+    Array.from(lists).map(li =>console.log(li));
+
+    // 작성한 innerText만 담긴 배열을 만들기
+    const results = Array.from(lists).map(li =>li.textContent + "A");
+    console.log(results);
+
+
+  </script>
+</body>
+</html>

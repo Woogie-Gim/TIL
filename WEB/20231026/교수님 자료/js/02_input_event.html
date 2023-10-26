@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 이벤트 발생 (input창에 text를 입력하면 입력값을 실시간으로 출력하기) -->
+  <input type="text" id="text-input">
+  <p></p>
+  <script>
+    
+    // 이벤트 발생시킬 대상 선택
+    const textInput = document.querySelector('#text-input')
+
+    const input_event = function (event) {
+      // event 라는 매개변수는 생략 가능
+    
+      const ptag = document.querySelector('p')
+      
+      //console.log(event)
+
+      ptag.innerHTML = event.target.value
+            
+    }
+    
+    // 이벤트 발생시키기
+    textInput.addEventListener('input',input_event )
+
+  </script>
+</body> 
+
+</html>

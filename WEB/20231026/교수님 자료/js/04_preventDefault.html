@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+
+<body>
+  <!-- 이벤트 발생하는 것을 취소 시키는.. 
+    이벤트 발생을 막는 방법을 배운다 
+    총 2가지를 실습 해 보겠다. -->
+
+  <!-- 1. 체크박스를 클릭하면 
+     체크할 수 없다는 문자열을 출력하고
+     체크박스가 체크 되는것을 막아보기 -->
+
+  <!-- 2. 정말 중요한 내용 이라고 적은 문자를 
+     드레그를 통해서 블럭 잡은 후 ctrl+c 로 복사 이벤트를 실시하면
+     복사하면 안된다는 경고창 띄우기 -->
+
+
+    <p>제출 하시려면 체크박스를 클릭해주세요.</p>
+
+  <div>
+    <h1>정말 중요한 내용</h1>
+  </div>
+
+
+  <form>
+    <label for="id_checkbox">체크박스:</label>
+    <input type="checkbox" id="id_checkbox" />
+  </form>
+
+  <div id="output-box"></div>
+
+  <script>
+
+    const cbox = document.querySelector("#id_checkbox"); // id가 id_checkbox 인것을 지정 후
+
+    cbox.addEventListener("click", function (event) { // 클릭이벤트 발생시
+      document.getElementById("output-box").innerHTML +=
+        // id속성의 값이 output-box 인곳에
+        "sorry! preventDefault() 때문에 체크할 수 없어요!<br>";
+      // 체크할 수 없다는 문자열text를 넣은 후
+      event.preventDefault();
+      // 체크박스에 체크가 되는 이벤트를 막는다. 따라서
+      // 체크할수 없다는 문자열만 출력이 되고 체크박스에 체크는 작동하지 않는다.
+    },
+    );
+
+
+
+    const h1 = document.querySelector('h1')
+
+    h1.addEventListener('copy', function (e) {
+      console.log(e)
+      // 브라우저에서 블럭잡은 후 컨트롤c를 하면 이벤트 발생 (클립보드이벤트발생)
+      // 개발자 도구로 확인해라.
+
+      // 복사 못하게 (이벤트 발생 안하도록 막아주고)
+      event.preventDefault()
+
+      // 경고창 하나 띄어보자
+      alert('복사하면 안됩니다.')
+
+    })
+
+  </script>
+</body>
+
+</html>
+
+<!-- a 태그는 내부적으로 href="#" 속성을 가지고 있어 a 태그 클릭시 해당 페이지로 이동할 것이다.
+a 태그에 click 이벤트를 부여 한 다음 이벤트 발생시
+이때 이벤트만 실행하고 브라우저 이동을 막고 싶을때 preventDefault 사용 한다.
+
+또 많이 사용하는 경우를 예를 들자면
+form 태그에서도 submit을 하면 서버의 경로를 action으로 적어 주었을 경우 서버로 양식을 보낼것이다.
+이때 이벤트 발생시키지만 해당 서버로 양식을 제출하는 것을 막기 위해서 사용하기도 한다
+
+-->
+
+<!-- 
+추가적인 참고 지식으로 이벤트 버블링을 막는 방법을 소개하겠다.
+
+event.stopPropagation()
+// 상위로 이벤트가 전파되지 않도록 중단한다.
+
+또는 
+
+event.stopImmediatedPropagation()
+
+// 상위 뿐만 아니라 같은레벨로도 이벤트가 전파되지 않도록 한다.
+// 예를들어 이벤트를 동시에 2개를 달았을 경우, 
+// 나는 이 이벤트는 하나만 발생 했으면 좋겠어.. 싶을때
+// stopimmediatedpropagation을 사용하면 
+// 첫번째 이벤트만 발생하고 두번째는 발생 안할 것이다.
+ -->

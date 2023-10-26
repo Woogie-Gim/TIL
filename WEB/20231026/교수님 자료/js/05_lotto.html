@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>프로젝트</title>
+  <style>
+    
+    /* 로또번호를 랜덤으로 생성하는 이벤트를 발생 시켜 보겠다.
+    
+    지금 우리는 
+    요소를 (버튼) / 클릭하면(이벤트) / 번호출력하기(함수) 를 계속 실습 중이다.
+
+    번호를 랜덤으로 생성을 해야 하는데 이때 우리는 lodash 라이브러리를 사용 하다.
+
+    lodash 는 많은 javascript 의 개발자들의 정신건강을 이롭게 만드는 아주 유용한 라이브러리다. 
+    
+    파이썬에서 range 또는 sample 또는 random 과 같은 것들을 javascript에서는 
+    
+    ladash 의 라이브러리를 사용하면 된다. 
+
+    사용 방법은 부트스트랩 사용 했던 것이랑 같다.
+    
+    lodash 공식 홈에 들어가서 메인화면에 cdn copy를 사용하면 된다.
+
+    그리고 필요한 라이브러리가 있으면 공식문서 내에서 검색 후 
+    
+    사용방법을 보고 그대로 사용하면 된다. 우리는 랜덤 번호를 생성하는 것을 실습 해 볼 예정이다. */
+
+
+
+    /* 스타일은 수정하지 않습니다. */
+    .ball {
+      width: 5rem;
+      height: 5rem;
+      margin: .5rem;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 5rem;
+      font-size: xx-large;
+      font-weight: bold;
+      background-color: crimson;
+      color: white;
+    }
+        /* 로또공이 가로로 출력되게 하기 위해서 flex 적용했습니다. */
+    .ball-container { 
+      display: flex;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>로또 추천 번호</h1>
+  <button id="lotto-btn">행운 번호 받기</button>
+  <div id="TopDiv"></div>
+  <div id="result"></div>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+
+    // 우리가 하고자 하는것은
+    // 버튼을 클릭하면 이벤트 실행하기 
+
+    // 가장 먼저 버튼을 선택하자. 
+    const button = document.querySelector('#lotto-btn')
+        
+    // 버튼을 클릭했을때 이벤트 등록
+    button.addEventListener('click', function() {
+    
+      // div 태그 하나 만들고 (6개의 공을 담을 컨테이너 만들어 주었음)
+      const ballContainer = document.createElement('div')   
+     
+      // 랜덤 숫자 6개 만들기 (lodash 공식홈 들어가서 사용법 확인하기!)
+      const numbers = _.sampleSize(_.range(1, 46), 6)     
+      // console.log(numbers)
+      
+      // 공 만들기      
+      numbers.forEach((number) => {                  // 6개의 숫자 중에 한 숫자씩 뽑아서
+        const ball = document.createElement('div')   // div 태그 하나 만들어서 (공으로 사용할 태그를 만듬)
+        ball.classList.add('ball')                   // div 태그에 ball 이라는 클래스속성 추가 하고
+        ball.innerText = number                      // 랜덤으로 만든 숫자하나를 ball 에 text 값으로 넣은 후
+        ballContainer.appendChild(ball)              // 볼을 컨테이너에 넣어주기 (총 6개의 공이 컨테이너에 담길 것임)
+      })
+      
+      const result = document.querySelector('#result') // 만든 공을 id가 result인 div태그의 자식으로 추가
+      
+      // result.appendChild(ballContainer)
+      result.prepend(ballContainer)  //요소의 앞에 추가 (최근에 생성됨 번호가 위로 올라감)
+
+      // 컨테이너에 flex 먹여서 볼이 가롤 배치되도록 하자.
+      ballContainer.classList.add('ball-container') 
+     
+  })
+  </script>
+</body>
+</html>
+

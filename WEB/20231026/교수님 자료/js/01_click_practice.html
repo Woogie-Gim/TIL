@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- 클릭이벤트 연습이다.
+  
+  먼저 브라우저로 확인 후
+  내용을 입력시 
+
+  '10기 광주 2반 화이팅' 을 넣고 확인 하기 버튼을 눌러보고
+  다른 문자열을 넣고 확인하기 버튼도 눌러보자.
+
+  지금은 css 보다는 javascript 내용에 집중을 하자. -->
+  
+  <style>
+    section {
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .myInputs {
+      display: block;
+      outline: none;
+      width: 200px;
+      margin: 15px;
+      padding: 15px 10px;
+      text-align: center;
+      border: 2px solid black;
+      border-radius: 5px;
+    }
+ 
+    .myInputs:focus {
+      /* focus 발생시 변경될 속성 */
+      border-color: green;
+    }
+
+    .myButton{
+      display: block;
+      background: none;
+      outline: none;
+      margin: 15px auto;
+      padding: 10px 10px;
+      text-align: center;
+      border: 2px solid #55b2cf;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+    .myButton:hover {
+      color: white;
+      background-color: #55b2cf;
+    }
+
+  </style>
+</head>
+<body>
+  <section>
+    <div>
+      <input class="myInputs" type="text" placeholder="내용을 입력하세요">
+      <button class="myButton">확인하기</button>
+    </div>
+  </section>
+  
+  <script>
+
+    const myInput = document.querySelector('input')
+    const myBtn = document.querySelector('button')
+
+    myBtn.addEventListener('click', () => {
+      if (myInput.value === '10기 광주 2반 화이팅') {
+        myInput.value = ''
+        alert('여러분을 응원합니다 :)')
+      } else {
+        myInput.value = ''
+        alert('당신은 2반이 아닙니다. :)')
+      }
+    })
+  </script>
+
+</body>
+</html>

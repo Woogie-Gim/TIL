@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+   <!-- 버튼을 클릭했을경우 기존 이미지를 다른 img로 갈아치우기 -->
+
+  <div class="hello hello2" id="hello3" style="color:red;">
+    안녕하세요 
+  </div>
+
+  <button>클릭!!</button>
+  <img src="https://cdn.pixabay.com/photo/2014/01/24/04/36/roasted-250875__340.jpg">
+  
+  <script>
+    // getAttribute -> 속성을 가져오기 예를들면
+    // href, id, class, style, src -> 들이 전부 속성이다.
+    // setAttribute()  -> 속성을 설정시 사용한다. 검색한번 해보세요!!
+    const div = document.querySelector('div');
+    // div.getAttribute("class") // 클래스 속성 적욕
+    // div.setAttribute("style", "color:blue;")  // 스타일 속성 적용
+
+    // 버튼을 만들기
+    const button = document.querySelector("button");
+
+    // img 태그를 넣을것
+    // 버튼을 클릭했을경우 기존 이미지를 다른 img로 갈아치우기
+    // 버튼을 누르면 고기에서 치킨으로 바뀔 것임
+    
+    const chicken_url = "https://cdn.pixabay.com/photo/2022/06/26/09/40/chicken-broasted-7284943__340.png"
+
+    const img = document.querySelector('img');
+
+    button.addEventListener('click', function(){
+      console.log("test");
+      console.log(img.getAttribute('src'));
+      img.setAttribute('src', chicken_url);
+    })
+
+
+
+  </script>
+
+</body>
+</html>
+

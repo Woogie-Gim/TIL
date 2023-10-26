@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+
+<body>
+  <!-- 버튼 누르면 숫자 올라가기 실습 -->
+  <button id="btn">숫자 올리기</button>
+  <button id="btn2">숫자 내리기</button>
+  <p id="counter">0</p>
+    
+  <script>
+
+  let countNumber = 0
+
+  const btn = document.querySelector('#btn') // 이벤트 발생시킬 대상을 선택
+  const btn2 = document.querySelector('#btn2') 
+
+  // 이벤트 부여하기
+  
+  // 이벤트타겟.addEventListener('발생할이벤트',실행할함수)
+  btn.addEventListener('click', function() { 
+    // (click 이벤트 발생시 // btn 에다가 // 콜백함수를 적용하겠다.
+
+    countNumber += 1        
+    const counter = document.querySelector('#counter')
+    counter.innerText = countNumber
+    // 카운트 넘버 값을 1 증가시킨 후 
+    // id가 counter인 대상에
+    // 증가시킨 값을 넣겠다.
+  })
+
+  btn2.addEventListener('click',function(){
+
+    countNumber-=1
+    const counter = document.querySelector('#counter') // id가 counter인의 내용을 변경 시키기
+    counter.innerText = countNumber
+  })
+  
+  </script>
+</body>
+
+</html>

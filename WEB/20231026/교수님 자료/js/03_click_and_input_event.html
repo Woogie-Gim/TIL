@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .blue {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1></h1>
+    <button id="btn">클릭</button>
+    <input type="text" />
+
+    <script>
+      const input = document.querySelector("input"); // 대상 선택
+
+      // 인풋이벤트 정의
+      const input_event=function (event) {
+        const h1Tag = document.querySelector("h1");
+        h1Tag.innerText = event.target.value;
+      }
+
+      // input 이벤트 발생시키기
+      input.addEventListener("input", input_event );
+
+
+      const btn = document.querySelector("#btn"); // 대상 선택
+
+      // 클릭 이벤트 정의
+      const click_event=function () {
+        
+        const h1 = document.querySelector("h1");
+
+        h1.classList.toggle("blue");
+      }
+      
+      // 이벤트 발생 시키기
+      btn.addEventListener("click", click_event);
+    </script>
+  </body>
+</html>
