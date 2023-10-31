@@ -1,0 +1,159 @@
+{% comment %} 
+@require_POST
+def comments_update(request, article_pk, comment_pk):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment, pk=comment_pk)
+        if request.user == comment.user:
+            print(request.POST)
+            comment_form = CommentForm(request.POST, instance=comment)
+            if comment_form.is_valid():
+                comment_form.save()
+            context = {
+                'articlePk': article_pk,
+                'commentPk': comment_pk,
+                'updateComment':request.POST["content"]
+            }
+            return JsonResponse(context, status=200)
+    return redirect('accounts:login')
+
+{% endcomment %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>DETAIL</h2>
+  <h3>{{ article.pk }} 번째 글</h3>
+  <hr>
+  <p>제목 : {{ article.title }}</p>
+  <p>내용 : {{ article.content }}</p>
+  <p>작성시각 : {{ article.created_at }}</p>
+  <p>수정시각 : {{ article.updated_at }}</p>
+  <hr>
+  {% if user == article.user %}
+    <a href="{% url 'articles:update' article.pk %}">[UPDATE]</a>
+    <form action="{% url 'articles:delete' article.pk %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="DELETE">
+    </form>
+  {% endif %}
+  <a href="{% url 'articles:index' %}">[back]</a>
+  <hr>
+  <h4>댓글 목록</h4>
+  
+  <ul id="comment-list">
+    {% for comment in comments %}
+      <li id="comment-{{ comment.pk }}">
+        {{ comment.user }} - {{ comment.content }}
+        {% if user == comment.user %}
+          <form id="delete-comment-form" action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST" class="d-inline">
+            {% csrf_token %}
+            <input type="submit" value="DELETE">
+          </form>
+          <button onclick="renderEditForm({{ comment.pk }}, '{{ comment.content }}')">수정</button>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <hr>
+  {% if request.user.is_authenticated %}
+    <form id="comment-form">
+      {% csrf_token %}
+      {{ comment_form }}
+      <input type="submit">
+    </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인하세요.]</a>
+  {% endif %}
+{% endblock content %}
+
+{% block script %}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+    function renderEditForm(commentPk, content) {
+      const commentElement = document.getElementById(`comment-${commentPk}`);
+      commentElement.innerHTML = `
+        <form id="edit-comment-form" action="/articles/{{ article.pk }}/comments/${commentPk}/update/" method="POST" class="d-inline">
+          {% csrf_token %}
+          <input type="hidden" name="_method" value="PUT"> 
+          <input type="text" name="content" value="${content}">
+          <input type="submit" value="update">
+        </form>
+      `;
+    
+      const editForm = commentElement.querySelector('#edit-comment-form');
+      handleEditFormSubmit(editForm, commentPk);
+    }
+
+    function handleEditFormSubmit(editForm, commentPk) {
+      editForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        formData.append('commentPk', commentPk);
+        axios({
+          method: 'POST',
+          url: this.action,
+          data: formData,
+          headers: {
+            'X-CSRFToken': csrftoken
+          }
+        })
+        .then(response => {
+          const li = document.querySelector(`#comment-${response.data.commentPk}`)
+          li.innerHTML = `
+            {{ request.user.username }} - ${response.data.updateComment}
+            <form id="delete-comment-form" action="/articles/${response.data.articlePk}/comments/${commentPk}/delete/" method="POST" class="d-inline">
+              {% csrf_token %}
+              <input type="submit" value="DELETE">
+            </form>
+            <button onclick="renderEditForm(${response.data.commentPk}, '${response.data.updateComment}')">수정</button>
+          `
+        })
+        .catch(error => {
+          console.error('댓글 업데이트 중 오류 발생:', error);
+        });
+      });
+    }
+
+    const create_form = document.querySelector('#comment-form')
+    const input = document.querySelector('[name=content]')
+
+    create_form.addEventListener('submit', function (event) {
+      event.preventDefault()
+      let data = new FormData()
+      data.append('content', input.value)
+      axios({
+        method: 'post',
+        url: `http://127.0.0.1:8000/articles/{{article.pk}}/comments/`,
+        data: data,
+        headers: {
+          'X-CSRFToken': csrftoken
+        }
+      })
+        .then(response => {
+          const { commentPk, articlePk } = response.data
+          const li = createCommentElement(commentPk, input.value, articlePk);
+          const ul = document.querySelector('#comment-list')
+          ul.append(li)
+
+          input.value = ''
+        })
+    })
+
+    function createCommentElement(commentPk, content, articlePk) {
+      const li = document.createElement('li');
+      li.id = `comment-${commentPk}`;
+      li.innerHTML = `
+        {{ request.user.username }} - ${content}
+        <form id="delete-comment-form" action="/articles/${articlePk}/comments/${commentPk}/delete/" method="POST" class="d-inline">
+          {% csrf_token %}
+          <input type="submit" value="DELETE">
+        </form>
+        <button onclick="renderEditForm(${commentPk}, '${content}')">수정</button>
+      `;
+      return li;
+    }
+  </script>
+{% endblock script %}
